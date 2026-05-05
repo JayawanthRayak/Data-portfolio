@@ -6,7 +6,7 @@
 
 A single-file, immersive portfolio built with **Three.js**, animated with a particle field and drifting wireframe geometry, populated with four years of work across finance, banking, and healthcare data systems.
 
-[![Live Site](https://img.shields.io/badge/▶_View_Live_Site-0a0a0a?style=for-the-badge&logoColor=white&labelColor=ffd84d&color=0a0a0a)](https://dataportfolio-g13r0kzcs-jayawanthrayakota-6349s-projects.vercel.app/)
+[![Live Site](https://img.shields.io/badge/▶_View_Live_Site-0a0a0a?style=for-the-badge&logoColor=white&labelColor=ffd84d&color=0a0a0a)]((https://dataportfolio-rho.vercel.app?_vercel_share=o96e24Usg3oqJAQt4dNeOpzWe3ejA31a)/)
 [![Resume](https://img.shields.io/badge/Download_Resume-PDF-ffd84d?style=for-the-badge&logoColor=0a0a0a&labelColor=0a0a0a)](./Jayawanth_Rayakota_Resume.pdf)
 
 ![Three.js](https://img.shields.io/badge/Three.js-r128-000000?style=flat-square&logo=three.js&logoColor=white)
