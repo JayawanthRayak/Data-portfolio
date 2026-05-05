@@ -165,7 +165,6 @@ Push to a repo, enable Pages on the `main` branch (root), done.
 **Jayawanth Rayakota**
 
 [![Email](https://img.shields.io/badge/jayawanthrayakota@gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:jayawanthrayakota@gmail.com)
-[![Phone](https://img.shields.io/badge/+1_(980)_500--9375-22c55e?style=for-the-badge&logo=whatsapp&logoColor=white)](tel:+19805009375)
 [![Location](https://img.shields.io/badge/Charlotte,_NC-blue?style=for-the-badge&logo=googlemaps&logoColor=white)](#)
 
 </div>
