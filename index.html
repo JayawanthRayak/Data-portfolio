@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jayawanth Rayakota — Senior Data Analyst & Data Engineer</title>
+  <meta name="description" content="Portfolio of Jayawanth Rayakota, Senior Data Analyst and Data Engineer specializing in ETL pipelines, cloud-native data architecture, and predictive analytics." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ---------- Reset & base ---------- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #0a0a0a;
+      color: #e8e8e8;
+      overflow-x: hidden;
+      line-height: 1.6;
+      cursor: none;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ---------- Custom cursor ---------- */
+    .cursor-dot, .cursor-ring {
+      position: fixed; top: 0; left: 0; pointer-events: none;
+      border-radius: 50%; z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width .25s ease, height .25s ease, background .25s ease;
+    }
+    .cursor-dot { width: 6px; height: 6px; background: #fafafa; }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(255,255,255,.4);
+      transition: transform .15s ease, width .25s ease, height .25s ease, border-color .25s ease;
+    }
+    .cursor-ring.hover { width: 64px; height: 64px; border-color: #ffd84d; }
+    @media (max-width: 768px) {
+      body { cursor: auto; }
+      .cursor-dot, .cursor-ring { display: none; }
+    }
+
+    /* ---------- 3D canvas background ---------- */
+    #bg-canvas {
+      position: fixed; top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ---------- Navbar ---------- */
+    nav.navbar {
+      position: fixed; top: 0; left: 0; right: 0;
+      padding: 22px 6vw;
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      background: rgba(10,10,10,.55);
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: 22px; letter-spacing: 1px;
+    }
+    .nav-logo span { color: #ffd84d; }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a {
+      font-size: 14px; font-weight: 500; letter-spacing: .5px;
+      color: rgba(232,232,232,.75);
+      transition: color .25s ease;
+      position: relative;
+    }
+    .nav-links a:hover { color: #ffd84d; }
+    .nav-cta {
+      padding: 10px 22px;
+      border: 1px solid #ffd84d; color: #ffd84d;
+      border-radius: 999px;
+      font-size: 13px; font-weight: 600; letter-spacing: .5px;
+      transition: all .25s ease;
+    }
+    .nav-cta:hover { background: #ffd84d; color: #0a0a0a; }
+    @media (max-width: 768px) {
+      .nav-links a:not(.nav-cta) { display: none; }
+    }
+
+    /* ---------- Section base ---------- */
+    section {
+      position: relative;
+      padding: 120px 6vw;
+      z-index: 2;
+    }
+    .section-tag {
+      display: inline-block;
+      font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+      color: #ffd84d; margin-bottom: 24px;
+      font-weight: 600;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(40px, 6vw, 88px);
+      font-weight: 700; line-height: 1; letter-spacing: -2px;
+      margin-bottom: 60px;
+    }
+    .section-title em {
+      font-style: italic; color: #ffd84d; font-weight: 600;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 120px 6vw 80px;
+      position: relative;
+    }
+    .hero-greet {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(18px, 2vw, 24px);
+      color: rgba(232,232,232,.75);
+      margin-bottom: 16px;
+      font-weight: 400;
+    }
+    .hero-name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(40px, 7.5vw, 110px);
+      font-weight: 800;
+      line-height: .95; letter-spacing: -2.5px;
+      text-transform: uppercase;
+    }
+    .hero-name .last {
+      display: block;
+      color: transparent;
+      -webkit-text-stroke: 1.5px #fafafa;
+    }
+    .hero-roles {
+      margin-top: 48px;
+      display: flex; flex-wrap: wrap; gap: 14px;
+    }
+    .hero-role {
+      padding: 10px 22px;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 999px;
+      font-size: 14px; font-weight: 500; letter-spacing: .5px;
+      color: rgba(232,232,232,.85);
+      backdrop-filter: blur(6px);
+      background: rgba(255,255,255,.03);
+    }
+    .hero-role.accent { border-color: #ffd84d; color: #ffd84d; }
+    .hero-meta {
+      margin-top: 56px;
+      display: flex; flex-wrap: wrap; gap: 40px;
+      font-size: 14px; color: rgba(232,232,232,.65);
+    }
+    .hero-meta span { display: flex; align-items: center; gap: 8px; }
+    .hero-meta strong { color: #fafafa; font-weight: 600; }
+    .scroll-hint {
+      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+      font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+      color: rgba(232,232,232,.5);
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+    }
+    .scroll-hint::after {
+      content: ''; width: 1px; height: 32px;
+      background: linear-gradient(180deg, rgba(232,232,232,.5), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { transform: scaleY(1); opacity: .5; }
+      50% { transform: scaleY(1.4); opacity: 1; }
+    }
+
+    /* ---------- ABOUT ---------- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+    .about-num {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(80px, 10vw, 140px);
+      font-weight: 800; line-height: 1;
+      color: #ffd84d;
+    }
+    .about-num small {
+      display: block; font-size: 14px; letter-spacing: 3px;
+      color: rgba(232,232,232,.6); font-weight: 500;
+      margin-top: 12px; font-family: 'Inter', sans-serif;
+    }
+    .about-bio {
+      font-size: clamp(16px, 1.4vw, 20px);
+      color: rgba(232,232,232,.85);
+      line-height: 1.7;
+    }
+    .about-bio p + p { margin-top: 20px; }
+    .about-stats {
+      margin-top: 48px;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 600px) {
+      .about-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+    .stat {
+      padding: 24px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 12px;
+      background: rgba(255,255,255,.02);
+    }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 32px; font-weight: 700;
+      color: #ffd84d;
+    }
+    .stat-label {
+      font-size: 12px; color: rgba(232,232,232,.65);
+      margin-top: 6px; letter-spacing: .5px;
+    }
+
+    /* ---------- WHAT I DO ---------- */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 900px) {
+      .services { grid-template-columns: 1fr; }
+    }
+    .service {
+      padding: 36px 28px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      background: rgba(255,255,255,.02);
+      transition: all .3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .service::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, #ffd84d, transparent);
+      opacity: 0; transition: opacity .3s ease;
+    }
+    .service:hover { transform: translateY(-6px); border-color: rgba(255,216,77,.4); }
+    .service:hover::before { opacity: 1; }
+    .service-icon {
+      width: 48px; height: 48px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 12px;
+      background: rgba(255,216,77,.1);
+      color: #ffd84d;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+    .service h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px; font-weight: 600;
+      margin-bottom: 8px; color: #fafafa;
+    }
+    .service h4 {
+      font-size: 13px; color: rgba(255,216,77,.85);
+      font-weight: 500; letter-spacing: .5px;
+      margin-bottom: 16px; text-transform: uppercase;
+    }
+    .service p {
+      font-size: 14px; color: rgba(232,232,232,.75);
+      line-height: 1.7;
+    }
+    .service-tags {
+      margin-top: 20px;
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .service-tag {
+      padding: 5px 12px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 999px;
+      font-size: 11px; color: rgba(232,232,232,.7);
+      letter-spacing: .3px;
+    }
+
+    /* ---------- CAREER ---------- */
+    .career-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 350px) 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .career-wrap { grid-template-columns: 1fr; gap: 30px; }
+    }
+    .timeline { position: relative; }
+    .timeline::before {
+      content: ''; position: absolute; left: 8px; top: 14px; bottom: 14px;
+      width: 1px;
+      background: linear-gradient(180deg, #ffd84d 0%, rgba(255,216,77,.1) 100%);
+    }
+    .job {
+      position: relative;
+      padding: 0 0 56px 40px;
+    }
+    .job:last-child { padding-bottom: 0; }
+    .job::before {
+      content: ''; position: absolute; left: 0; top: 8px;
+      width: 17px; height: 17px;
+      border-radius: 50%;
+      background: #0a0a0a;
+      border: 2px solid #ffd84d;
+      box-shadow: 0 0 0 4px rgba(255,216,77,.15);
+    }
+    .job-period {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+      color: #ffd84d; font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .job-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px; font-weight: 600;
+      color: #fafafa;
+      margin-bottom: 4px;
+    }
+    .job-co {
+      font-size: 14px; color: rgba(232,232,232,.7);
+      margin-bottom: 16px;
+    }
+    .job-co em { font-style: normal; color: rgba(232,232,232,.5); }
+    .job ul {
+      list-style: none;
+      font-size: 14px;
+      color: rgba(232,232,232,.78);
+    }
+    .job ul li {
+      padding: 6px 0 6px 18px;
+      position: relative;
+    }
+    .job ul li::before {
+      content: '◆'; position: absolute; left: 0; top: 6px;
+      color: #ffd84d; font-size: 8px;
+    }
+    .job-tech {
+      margin-top: 16px;
+      font-size: 12px; color: rgba(232,232,232,.55);
+      font-family: 'Space Grotesk', sans-serif;
+      font-style: italic;
+    }
+
+    /* ---------- TECH STACK ---------- */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .tech-card {
+      padding: 28px 24px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 14px;
+      background: rgba(255,255,255,.02);
+      transition: all .3s ease;
+    }
+    .tech-card:hover {
+      border-color: rgba(255,216,77,.3);
+      background: rgba(255,216,77,.03);
+    }
+    .tech-card h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: #ffd84d;
+      margin-bottom: 14px;
+    }
+    .tech-list {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .tech-pill {
+      padding: 6px 12px;
+      border-radius: 8px;
+      background: rgba(255,255,255,.05);
+      font-size: 12.5px; color: rgba(232,232,232,.85);
+      transition: all .25s ease;
+    }
+    .tech-pill:hover {
+      background: rgba(255,216,77,.15);
+      color: #ffd84d;
+    }
+    .marquee {
+      margin-top: 60px;
+      overflow: hidden;
+      mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    }
+    .marquee-track {
+      display: flex; gap: 60px;
+      animation: marquee 35s linear infinite;
+      width: max-content;
+    }
+    .marquee-track span {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(36px, 5vw, 72px);
+      font-weight: 700;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255,255,255,.25);
+      letter-spacing: -1px;
+      white-space: nowrap;
+    }
+    .marquee-track span.solid {
+      color: #ffd84d; -webkit-text-stroke: 0;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ---------- EDUCATION + CERTS ---------- */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+    @media (max-width: 900px) {
+      .edu-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+    .edu-card {
+      padding: 36px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      background: rgba(255,255,255,.02);
+    }
+    .edu-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px; font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .edu-card .edu-school {
+      color: rgba(232,232,232,.7);
+      margin-bottom: 6px;
+    }
+    .edu-card .edu-period {
+      color: #ffd84d; font-size: 13px;
+      letter-spacing: 1px; font-weight: 500;
+    }
+    .cert-list {
+      list-style: none; margin-top: 20px;
+    }
+    .cert-list li {
+      padding: 12px 0;
+      border-top: 1px solid rgba(255,255,255,.06);
+      display: flex; align-items: center; gap: 12px;
+      font-size: 14.5px;
+    }
+    .cert-list li:first-child { border-top: 0; }
+    .cert-list li::before {
+      content: '✓';
+      color: #ffd84d; font-weight: 700;
+      width: 22px; height: 22px;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: rgba(255,216,77,.1); border-radius: 50%;
+      flex-shrink: 0; font-size: 12px;
+    }
+
+    /* ---------- CONTACT ---------- */
+    .contact {
+      padding: 120px 6vw;
+      text-align: center;
+    }
+    .contact-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(48px, 9vw, 140px);
+      font-weight: 800; letter-spacing: -3px;
+      line-height: .95;
+    }
+    .contact-title em {
+      font-style: italic; color: #ffd84d;
+    }
+    .contact-mail {
+      display: inline-block;
+      margin-top: 40px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(18px, 2vw, 28px);
+      font-weight: 500;
+      color: #fafafa;
+      padding: 18px 32px;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 999px;
+      transition: all .3s ease;
+    }
+    .contact-mail:hover {
+      border-color: #ffd84d; background: rgba(255,216,77,.08);
+      color: #ffd84d;
+    }
+    .contact-info {
+      margin-top: 32px;
+      display: flex; flex-wrap: wrap; gap: 32px; justify-content: center;
+      font-size: 15px; color: rgba(232,232,232,.7);
+    }
+    .socials {
+      margin-top: 56px;
+      display: flex; gap: 18px; justify-content: center;
+    }
+    .social {
+      width: 48px; height: 48px;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      transition: all .3s ease;
+      color: rgba(232,232,232,.85);
+    }
+    .social:hover {
+      border-color: #ffd84d; color: #ffd84d;
+      transform: translateY(-3px);
+    }
+    .social svg { width: 18px; height: 18px; }
+
+    footer {
+      padding: 40px 6vw;
+      border-top: 1px solid rgba(255,255,255,.06);
+      display: flex; justify-content: space-between;
+      font-size: 12px; color: rgba(232,232,232,.5);
+      flex-wrap: wrap; gap: 12px;
+      position: relative; z-index: 2;
+    }
+
+    /* ---------- Reveal animation ---------- */
+    .reveal {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- 3D Canvas -->
+<canvas id="bg-canvas"></canvas>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <a href="#hero" class="nav-logo" data-hover>JR<span>.</span></a>
+  <div class="nav-links">
+    <a href="#about" data-hover>About</a>
+    <a href="#services" data-hover>Services</a>
+    <a href="#career" data-hover>Career</a>
+    <a href="#stack" data-hover>Stack</a>
+    <a href="#contact" data-hover>Contact</a>
+    <a href="Jayawanth_Rayakota_Resume.pdf" download class="nav-cta" data-hover>Resume ↓</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-greet reveal">Hello, I'm</div>
+  <h1 class="hero-name reveal">
+    Jayawanth
+    <span class="last">Rayakota</span>
+  </h1>
+  <div class="hero-roles reveal">
+    <span class="hero-role accent">Senior Data Analyst</span>
+    <span class="hero-role">Data Engineer</span>
+    <span class="hero-role">Cloud · ETL · Analytics</span>
+  </div>
+  <div class="hero-meta reveal">
+    <span><strong>Charlotte, NC</strong></span>
+    <span>4+ yrs · Finance · Banking · Healthcare</span>
+    <span>AWS · Azure · Snowflake</span>
+  </div>
+  <div class="scroll-hint">SCROLL</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="reveal">
+      <span class="section-tag">About</span>
+      <div class="about-num">04+<small>Years building data systems</small></div>
+    </div>
+    <div class="reveal">
+      <h2 class="section-title">Who <em>I am</em></h2>
+      <div class="about-bio">
+        <p>I'm a Senior Data Analyst and Data Engineer with four years of experience across finance, banking, and healthcare. I design ETL pipelines, build cloud-native data architectures on AWS, Azure, and Snowflake, and turn raw data into decisions through predictive analytics and dashboards.</p>
+        <p>I've shipped regulated, production-grade work under HIPAA, SOX, GDPR, and PCI-DSS — using Python, PySpark, SQL, Power BI, and Tableau in agile teams. I care about clean models, fast queries, and analytics people actually use.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat">
+          <div class="stat-num">40%</div>
+          <div class="stat-label">Pipeline throughput improvement</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">60%</div>
+          <div class="stat-label">Reduction in manual ETL effort</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">4</div>
+          <div class="stat-label">Cloud / data certifications</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT I DO -->
+<section id="services">
+  <div class="reveal">
+    <span class="section-tag">What I do</span>
+    <h2 class="section-title">Services <em>&amp; expertise</em></h2>
+  </div>
+  <div class="services">
+    <div class="service reveal">
+      <div class="service-icon">⚙️</div>
+      <h4>ETL & Data Engineering</h4>
+      <h3>Pipelines that don't break</h3>
+      <p>End-to-end ingestion and transformation pipelines using AWS Glue, Step Functions, PySpark, and Azure Data Factory — with monitoring, lineage, and CI/CD baked in.</p>
+      <div class="service-tags">
+        <span class="service-tag">AWS Glue</span>
+        <span class="service-tag">PySpark</span>
+        <span class="service-tag">Step Functions</span>
+        <span class="service-tag">ADF</span>
+        <span class="service-tag">SSIS</span>
+      </div>
+    </div>
+    <div class="service reveal">
+      <div class="service-icon">📊</div>
+      <h4>Analytics & BI</h4>
+      <h3>Dashboards leaders trust</h3>
+      <p>Interactive dashboards in Power BI, Tableau, and AWS QuickSight that surface portfolio exposure, KPIs, and risk for executives, analysts, and compliance teams.</p>
+      <div class="service-tags">
+        <span class="service-tag">Power BI</span>
+        <span class="service-tag">Tableau</span>
+        <span class="service-tag">QuickSight</span>
+        <span class="service-tag">SQL</span>
+        <span class="service-tag">DAX</span>
+      </div>
+    </div>
+    <div class="service reveal">
+      <div class="service-icon">☁️</div>
+      <h4>Cloud Data Architecture</h4>
+      <h3>Snowflake-first, cost-aware</h3>
+      <p>Snowflake data models, clustering and partitioning strategies, and event-driven AWS architectures (S3, Athena, Lambda) tuned for performance and compliance.</p>
+      <div class="service-tags">
+        <span class="service-tag">Snowflake</span>
+        <span class="service-tag">Redshift</span>
+        <span class="service-tag">Athena</span>
+        <span class="service-tag">Lambda</span>
+        <span class="service-tag">IAM/KMS</span>
+      </div>
+    </div>
+    <div class="service reveal">
+      <div class="service-icon">🔮</div>
+      <h4>Predictive Analytics</h4>
+      <h3>Models that move the needle</h3>
+      <p>Statistical modeling and ML in Python (Pandas, NumPy, Scikit-learn) — from NAV trend analysis and investment patterns to financial KPI forecasting.</p>
+      <div class="service-tags">
+        <span class="service-tag">Python</span>
+        <span class="service-tag">Scikit-learn</span>
+        <span class="service-tag">Pandas</span>
+        <span class="service-tag">SAS</span>
+        <span class="service-tag">SPSS</span>
+      </div>
+    </div>
+    <div class="service reveal">
+      <div class="service-icon">🛡️</div>
+      <h4>Governance & Compliance</h4>
+      <h3>Regulated data, done right</h3>
+      <p>HIPAA, SOX, GDPR, PCI-DSS-aware pipelines with IAM, KMS, end-to-end data lineage, and audit-ready metadata repositories.</p>
+      <div class="service-tags">
+        <span class="service-tag">HIPAA</span>
+        <span class="service-tag">SOX</span>
+        <span class="service-tag">GDPR</span>
+        <span class="service-tag">PCI-DSS</span>
+        <span class="service-tag">Lineage</span>
+      </div>
+    </div>
+    <div class="service reveal">
+      <div class="service-icon">🚀</div>
+      <h4>Performance & Optimization</h4>
+      <h3>Faster queries, lower spend</h3>
+      <p>Snowflake clustering, Redshift tuning, SQL/PL-SQL refactoring, and cost-optimized compute for high-volume analytics and ML workloads.</p>
+      <div class="service-tags">
+        <span class="service-tag">Clustering</span>
+        <span class="service-tag">Partitioning</span>
+        <span class="service-tag">Cost optimization</span>
+        <span class="service-tag">PL/SQL</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAREER -->
+<section id="career">
+  <div class="reveal">
+    <span class="section-tag">Career</span>
+    <h2 class="section-title">My <em>experience</em></h2>
+  </div>
+  <div class="career-wrap">
+    <div class="reveal">
+      <p style="color: rgba(232,232,232,.7); font-size: 15px; line-height: 1.7;">
+        Four years across enterprise finance and banking — engineering data infrastructure, building analytics products, and partnering with portfolio, compliance, and engineering teams to ship regulated, high-impact systems.
+      </p>
+    </div>
+    <div class="timeline">
+      <div class="job reveal">
+        <div class="job-period">Feb 2025 — Present · Charlotte, NC</div>
+        <h3 class="job-title">Senior Data Analyst</h3>
+        <div class="job-co">T. Rowe Price <em>· Asset Management</em></div>
+        <ul>
+          <li>Engineered ETL workflows in AWS Glue, Step Functions, and Alteryx — ingesting Oracle, S3, and market-feed data into Snowflake for downstream analytics and modeling.</li>
+          <li>Built predictive models and statistical analyses to identify investment patterns, support NAV trend analysis, and inform portfolio teams.</li>
+          <li>Authored complex SQL/PL/SQL for exploration, hypothesis testing, and validation across large-scale financial datasets.</li>
+          <li>Designed Snowflake data models, ER diagrams, and metadata repositories supporting schema evolution and SOX / PCI-DSS compliance.</li>
+          <li>Shipped Power BI, Tableau, and QuickSight dashboards visualizing portfolio exposure, asset risk, and investment health for executives.</li>
+          <li>Tuned Snowflake performance via clustering, partitioning, and cost-optimized compute for high-volume ML pipelines.</li>
+          <li>Led Agile ceremonies — sprint planning, refinement, retros — to ship analytics use cases on cadence.</li>
+        </ul>
+        <div class="job-tech">Python · Pandas · NumPy · SQL · PL/SQL · AWS Glue · S3 · Lambda · Step Functions · Athena · Snowflake · Oracle · Alteryx · Power BI · Tableau · QuickSight · Git · Agile</div>
+      </div>
+      <div class="job reveal">
+        <div class="job-period">Feb 2021 — Jan 2024 · Bengaluru, India</div>
+        <h3 class="job-title">Data Engineer</h3>
+        <div class="job-co">Kyndryl <em>· Client: The Co-operative Bank</em></div>
+        <ul>
+          <li>Designed end-to-end pipelines for banking and financial datasets in PySpark, AWS Glue, and Step Functions — improving throughput by 40% and pipeline reliability.</li>
+          <li>Migrated large datasets from Oracle to Snowflake, refactoring SQL and applying clustering / partitioning for cost-efficient analytics.</li>
+          <li>Built PCI-DSS-compliant data lakes on AWS Redshift, Snowflake, and PostgreSQL — consolidating structured and semi-structured (JSON, XML) data for regulatory reporting.</li>
+          <li>Automated ETL with SSIS, Python, and Alteryx — cutting manual processing time by 60% and moving reporting from weekly to daily.</li>
+          <li>Built predictive analytics dashboards in Power BI, Tableau, and QuickSight surfacing financial KPIs for executives.</li>
+          <li>Integrated S3, Athena, and Lambda with Snowflake for event-driven, real-time analytics for operations and compliance.</li>
+          <li>Applied IAM, KMS, and end-to-end lineage practices to protect sensitive financial data.</li>
+        </ul>
+        <div class="job-tech">PySpark · Python · SQL · PL/SQL · AWS Glue · Redshift · Lambda · Athena · S3 · Snowflake · PostgreSQL · Oracle · SSIS · Power BI · Tableau · QuickSight · Hadoop · SAS · SPSS · Alteryx · Git · Jira</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="stack">
+  <div class="reveal">
+    <span class="section-tag">Tech stack</span>
+    <h2 class="section-title">Tools <em>I work with</em></h2>
+  </div>
+  <div class="tech-grid">
+    <div class="tech-card reveal">
+      <h4>☁️ Cloud Platforms</h4>
+      <div class="tech-list">
+        <span class="tech-pill">AWS Glue</span>
+        <span class="tech-pill">S3</span>
+        <span class="tech-pill">Redshift</span>
+        <span class="tech-pill">Athena</span>
+        <span class="tech-pill">Lambda</span>
+        <span class="tech-pill">Step Functions</span>
+        <span class="tech-pill">QuickSight</span>
+        <span class="tech-pill">Azure Data Lake</span>
+        <span class="tech-pill">Data Factory</span>
+        <span class="tech-pill">Blob Storage</span>
+        <span class="tech-pill">Snowflake</span>
+      </div>
+    </div>
+    <div class="tech-card reveal">
+      <h4>{} Languages</h4>
+      <div class="tech-list">
+        <span class="tech-pill">Python</span>
+        <span class="tech-pill">SQL</span>
+        <span class="tech-pill">PySpark</span>
+        <span class="tech-pill">PL/SQL</span>
+        <span class="tech-pill">R</span>
+      </div>
+    </div>
+    <div class="tech-card reveal">
+      <h4>⚙ ETL &amp; Integration</h4>
+      <div class="tech-list">
+        <span class="tech-pill">AWS Glue</span>
+        <span class="tech-pill">Azure Data Factory</span>
+        <span class="tech-pill">SSIS</span>
+        <span class="tech-pill">Alteryx</span>
+        <span class="tech-pill">Step Functions</span>
+        <span class="tech-pill">AWS Lambda</span>
+      </div>
+    </div>
+    <div class="tech-card reveal">
+      <h4>🗄 Databases</h4>
+      <div class="tech-list">
+        <span class="tech-pill">SQL Server</span>
+        <span class="tech-pill">PostgreSQL</span>
+        <span class="tech-pill">MySQL</span>
+        <span class="tech-pill">Oracle</span>
+        <span class="tech-pill">Snowflake</span>
+        <span class="tech-pill">AWS Redshift</span>
+      </div>
+    </div>
+    <div class="tech-card reveal">
+      <h4>📈 Big Data &amp; Analytics</h4>
+      <div class="tech-list">
+        <span class="tech-pill">Hadoop (HDFS, Hive)</span>
+        <span class="tech-pill">PySpark</span>
+        <span class="tech-pill">Pandas</span>
+        <span class="tech-pill">NumPy</span>
+        <span class="tech-pill">Scikit-learn</span>
+        <span class="tech-pill">SPSS</span>
+        <span class="tech-pill">SAS</span>
+      </div>
+    </div>
+    <div class="tech-card reveal">
+      <h4>📊 Visualization</h4>
+      <div class="tech-list">
+        <span class="tech-pill">Power BI</span>
+        <span class="tech-pill">Tableau</span>
+        <span class="tech-pill">AWS QuickSight</span>
+        <span class="tech-pill">Advanced Excel</span>
+      </div>
+    </div>
+    <div class="tech-card reveal">
+      <h4>🔧 DevOps &amp; Tools</h4>
+      <div class="tech-list">
+        <span class="tech-pill">Git</span>
+        <span class="tech-pill">GitHub</span>
+        <span class="tech-pill">Jenkins</span>
+        <span class="tech-pill">Jira</span>
+        <span class="tech-pill">Confluence</span>
+        <span class="tech-pill">CI/CD</span>
+      </div>
+    </div>
+    <div class="tech-card reveal">
+      <h4>🛡 Compliance</h4>
+      <div class="tech-list">
+        <span class="tech-pill">HIPAA</span>
+        <span class="tech-pill">SOX</span>
+        <span class="tech-pill">GDPR</span>
+        <span class="tech-pill">PCI-DSS</span>
+        <span class="tech-pill">IAM</span>
+        <span class="tech-pill">KMS</span>
+        <span class="tech-pill">Data Lineage</span>
+        <span class="tech-pill">Data Governance</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>SNOWFLAKE</span><span class="solid">•</span>
+      <span>AWS</span><span class="solid">•</span>
+      <span>AZURE</span><span class="solid">•</span>
+      <span>PYSPARK</span><span class="solid">•</span>
+      <span>POWER BI</span><span class="solid">•</span>
+      <span>TABLEAU</span><span class="solid">•</span>
+      <span>PYTHON</span><span class="solid">•</span>
+      <!-- duplicate for seamless loop -->
+      <span>SNOWFLAKE</span><span class="solid">•</span>
+      <span>AWS</span><span class="solid">•</span>
+      <span>AZURE</span><span class="solid">•</span>
+      <span>PYSPARK</span><span class="solid">•</span>
+      <span>POWER BI</span><span class="solid">•</span>
+      <span>TABLEAU</span><span class="solid">•</span>
+      <span>PYTHON</span><span class="solid">•</span>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION + CERTS -->
+<section id="education">
+  <div class="reveal">
+    <span class="section-tag">Education &amp; certifications</span>
+    <h2 class="section-title">Always <em>learning</em></h2>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <h3>Master of Science — Computer Science</h3>
+      <div class="edu-school">University of North Carolina at Charlotte</div>
+      <div class="edu-school" style="font-size: 13px;">Charlotte, NC</div>
+      <div class="edu-period" style="margin-top: 14px;">JAN 2024 — MAY 2025</div>
+    </div>
+    <div class="edu-card reveal">
+      <h3>Certifications</h3>
+      <ul class="cert-list">
+        <li>AWS Certified Data Analytics — Specialty</li>
+        <li>Microsoft Certified: Azure Data Engineer Associate</li>
+        <li>Snowflake SnowPro Core Certification</li>
+        <li>Tableau Desktop Specialist</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="reveal">
+    <span class="section-tag">Contact</span>
+    <h2 class="contact-title">Let's build <em>data systems</em><br/>that ship.</h2>
+    <a href="mailto:jayawanthrayakota@gmail.com" class="contact-mail" data-hover>jayawanthrayakota@gmail.com</a>
+    <div class="contact-info">
+      <span>📍 Charlotte, NC</span>
+      <span>📞 +1 (980) 500-9375</span>
+      <span>✉ jrayakot@charlotte.edu</span>
+    </div>
+    <div class="socials">
+      <!-- TODO: paste your real LinkedIn URL -->
+      <a class="social" href="#linkedin" target="_blank" rel="noopener" data-hover aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+      </a>
+      <!-- TODO: paste your real GitHub URL -->
+      <a class="social" href="#github" target="_blank" rel="noopener" data-hover aria-label="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      </a>
+      <a class="social" href="mailto:jayawanthrayakota@gmail.com" data-hover aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </a>
+      <a class="social" href="Jayawanth_Rayakota_Resume.pdf" download data-hover aria-label="Resume PDF">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="12" y2="18"/><line x1="15" y1="15" x2="12" y2="18"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 Jayawanth Rayakota — Built with Three.js</div>
+  <div>Senior Data Analyst · Data Engineer · Charlotte, NC</div>
+</footer>
+
+<!-- Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* ============================================================
+   Three.js animated background — particle field + drifting
+   wireframe icosahedrons. Mouse-parallax aware.
+   ============================================================ */
+(function () {
+  const canvas = document.getElementById('bg-canvas');
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x0a0a0a, 0.045);
+
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 200);
+  camera.position.set(0, 0, 18);
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setClearColor(0x000000, 0);
+
+  // -------- Particle field --------
+  const particleCount = 1200;
+  const positions = new Float32Array(particleCount * 3);
+  const colors = new Float32Array(particleCount * 3);
+  const accent = new THREE.Color(0xffd84d);
+  const white = new THREE.Color(0xffffff);
+
+  for (let i = 0; i < particleCount; i++) {
+    positions[i * 3]     = (Math.random() - 0.5) * 80;
+    positions[i * 3 + 1] = (Math.random() - 0.5) * 80;
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 60;
+    const c = Math.random() < 0.15 ? accent : white;
+    colors[i * 3]     = c.r;
+    colors[i * 3 + 1] = c.g;
+    colors[i * 3 + 2] = c.b;
+  }
+  const pGeo = new THREE.BufferGeometry();
+  pGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  pGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+  const pMat = new THREE.PointsMaterial({
+    size: 0.06,
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.85,
+    sizeAttenuation: true
+  });
+  const points = new THREE.Points(pGeo, pMat);
+  scene.add(points);
+
+  // -------- Wireframe shapes --------
+  const shapes = [];
+  const shapeDefs = [
+    { geo: new THREE.IcosahedronGeometry(1.6, 0), pos: [-7, 3, -4],  color: 0xffd84d, scale: 1 },
+    { geo: new THREE.OctahedronGeometry(1.4, 0),  pos: [8, -2, -6],  color: 0xffffff, scale: 1 },
+    { geo: new THREE.TorusGeometry(1.4, 0.45, 14, 36), pos: [6, 4, -10], color: 0xffd84d, scale: 0.9 },
+    { geo: new THREE.IcosahedronGeometry(1.0, 0), pos: [-9, -4, -8], color: 0xffffff, scale: 1 },
+    { geo: new THREE.TetrahedronGeometry(1.6, 0), pos: [3, -5, -3],  color: 0xffd84d, scale: 0.7 },
+  ];
+  shapeDefs.forEach(def => {
+    const wire = new THREE.WireframeGeometry(def.geo);
+    const line = new THREE.LineSegments(wire, new THREE.LineBasicMaterial({
+      color: def.color,
+      transparent: true,
+      opacity: 0.35
+    }));
+    line.position.set(...def.pos);
+    line.scale.setScalar(def.scale);
+    line.userData.spin = {
+      x: (Math.random() - 0.5) * 0.004,
+      y: (Math.random() - 0.5) * 0.004,
+      z: (Math.random() - 0.5) * 0.002
+    };
+    line.userData.basePos = [...def.pos];
+    line.userData.phase = Math.random() * Math.PI * 2;
+    scene.add(line);
+    shapes.push(line);
+  });
+
+  // -------- Mouse parallax --------
+  const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
+  window.addEventListener('mousemove', (e) => {
+    mouse.tx = (e.clientX / window.innerWidth) * 2 - 1;
+    mouse.ty = (e.clientY / window.innerHeight) * 2 - 1;
+  });
+
+  // -------- Scroll parallax --------
+  let scrollY = 0;
+  window.addEventListener('scroll', () => { scrollY = window.scrollY; }, { passive: true });
+
+  // -------- Resize --------
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  // -------- Animate --------
+  const clock = new THREE.Clock();
+  function animate() {
+    const t = clock.getElapsedTime();
+    mouse.x += (mouse.tx - mouse.x) * 0.05;
+    mouse.y += (mouse.ty - mouse.y) * 0.05;
+
+    // particle field gentle rotation
+    points.rotation.y = t * 0.02;
+    points.rotation.x = t * 0.01;
+
+    // shapes spin + bob
+    shapes.forEach((s) => {
+      s.rotation.x += s.userData.spin.x;
+      s.rotation.y += s.userData.spin.y;
+      s.rotation.z += s.userData.spin.z;
+      const bp = s.userData.basePos;
+      s.position.y = bp[1] + Math.sin(t * 0.6 + s.userData.phase) * 0.4;
+    });
+
+    // camera parallax
+    camera.position.x += (mouse.x * 2 - camera.position.x) * 0.03;
+    camera.position.y += (-mouse.y * 1.5 - scrollY * 0.001 - camera.position.y) * 0.03;
+    camera.lookAt(0, 0, 0);
+
+    renderer.render(scene, camera);
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+/* ============================================================
+   Custom cursor
+   ============================================================ */
+(function () {
+  const dot = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  if (!dot || !ring) return;
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  window.addEventListener('mousemove', (e) => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px';
+    dot.style.top = my + 'px';
+  });
+  function loop() {
+    rx += (mx - rx) * 0.18;
+    ry += (my - ry) * 0.18;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(loop);
+  }
+  loop();
+  document.querySelectorAll('a, [data-hover]').forEach(el => {
+    el.addEventListener('mouseenter', () => ring.classList.add('hover'));
+    el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
+  });
+})();
+
+/* ============================================================
+   Reveal on scroll (IntersectionObserver)
+   ============================================================ */
+(function () {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+})();
+</script>
+</body>
+</html>
